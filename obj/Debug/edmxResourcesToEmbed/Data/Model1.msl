@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdminPermissionsModelStoreContainer" CdmEntityContainer="AdminPermissionsEntities">
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="AdminPermissionsModel.Permissions">
+        <MappingFragment StoreEntitySet="Permissions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmployeeFirstname" ColumnName="EmployeeFirstname" />
+          <ScalarProperty Name="EmployeeLastname" ColumnName="EmployeeLastname" />
+          <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+          <ScalarProperty Name="PermissionDate" ColumnName="PermissionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissionTypes">
+      <EntityTypeMapping TypeName="AdminPermissionsModel.PermissionTypes">
+        <MappingFragment StoreEntitySet="PermissionTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

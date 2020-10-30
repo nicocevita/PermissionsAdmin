@@ -1,0 +1,104 @@
+﻿@model IEnumerable<PermissionsAdmin.Data.Permissions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="">Nicolas Ezequiel Varela</h2>
+
+<div class="container-lg page-header" itemprop="text">
+    <h2><a id="user-content-prueba-net-framework" class="anchor" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Prueba .NET Framework</h2>
+    <h3><a id="user-content-contexto" class="anchor" aria-hidden="true" href="#contexto"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contexto</h3>
+    <p>El cliente ZZZ necesita un portal Web para administrar las solicitudes de permisos de sus empleados.</p>
+    <h3><a id="user-content-instrucciones" class="anchor" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Instrucciones</h3>
+    <ul>
+        <li>Clonar esta solución.</li>
+        <li>Crear una tabla con el nombre <strong>Permissions</strong>, la cual debe contener los siguientes campos:</li>
+    </ul>
+    <table class="table">
+        <thead >
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Extra</th>
+                <th>Definición</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>integer</td>
+                <td>AUTOINCREMENTABLE</td>
+                <td>Identificador único del registro</td>
+            </tr>
+            <tr>
+                <td>EmployeeFirstname</td>
+                <td>varchar</td>
+                <td>NOT NULL</td>
+                <td>Nombre del empleado</td>
+            </tr>
+            <tr>
+                <td>EmployeeLastname</td>
+                <td>varchar</td>
+                <td>NOT NULL</td>
+                <td>Apellidos del empleado</td>
+            </tr>
+            <tr>
+                <td>PermissionType</td>
+                <td>integer</td>
+                <td>NOT NULL</td>
+                <td>Tipo de permiso solicitado</td>
+            </tr>
+            <tr>
+                <td>PermissionDate</td>
+                <td>datetime</td>
+                <td>NOT NULL</td>
+                <td>Fecha del permiso</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>Crear una tabla con el nombre <strong>PermissionTypes</strong>, la cual debe contener los siguientes campos:</li>
+    </ul>
+    <table class="table">
+        <thead >
+            <tr>
+                <th>Nombre</th>
+                <th >Tipo</th>
+                <th>Extra</th>
+                <th>Definición</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td >integer</td>
+                <td>AUTOINCREMENTABLE</td>
+                <td>Identificador único del registro</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>varchar</td>
+                <td>NOT NULL</td>
+                <td>Descripción del tipo de permiso</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>Establecer la relación entre <strong>Permissions</strong> y <strong>PermissionTypes</strong></li>
+        <li>Crear una aplicación Web en <strong>Visual Studio</strong> con el Framework de <strong>.NET</strong> versión <strong>4.5.1</strong>.</li>
+        <li>La aplicación Web debe contener dos pantallas que se puedan seleccionar de un menú, en la primera un pantalla que permita <strong>Solicitar Permiso</strong> y en la segunda una pantalla que permita <strong>Ver Permisos</strong>.</li>
+        <li>Puedes hacer un precargado de la tabla <strong>PermissionTypes</strong> con los datos que consideres, por ejemplo <em>enfermedad</em>, <em>diligencias</em>, etc.</li>
+        <li>Los campos que no admitan nulos deben ser validados en pantalla.</li>
+        <li>Puedes hacer uso de cualquier librería <strong>JS</strong>, <strong>CSS</strong> que consideres necesaria.</li>
+        <li>Crear un script SQL que permita crear las tablas en base de datos.</li>
+        <li>Una vez desarrollada la prueba colgar en tu cuenta de <strong>github</strong> en un repositorio público para poder descargarla y revisarla.</li>
+    </ul>
+    <h1><a id="user-content-consideraciones" class="anchor" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Consideraciones</h1>
+    <ul>
+        <li>El código debe estar escrito en inglés.</li>
+        <li>Aplicar buenas prácticas en codificación, como nombres de variables, comentariado de código, entre otros.</li>
+        <li>Hacer uso de SQL Server como base de datos para la persistencia de la información.</li>
+    </ul>
+</div>
+

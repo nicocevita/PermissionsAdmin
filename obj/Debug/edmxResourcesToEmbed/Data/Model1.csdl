@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdminPermissionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Permissions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeFirstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeLastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PermissionType" Type="Int32" Nullable="false" />
+    <Property Name="PermissionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PermissionTypes" Relationship="Self.FK_PermissionTypeID" FromRole="Permissions" ToRole="PermissionTypes" />
+  </EntityType>
+  <EntityType Name="PermissionTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Permissions" Relationship="Self.FK_PermissionTypeID" FromRole="PermissionTypes" ToRole="Permissions" />
+  </EntityType>
+  <Association Name="FK_PermissionTypeID">
+    <End Role="PermissionTypes" Type="Self.PermissionTypes" Multiplicity="1" />
+    <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissionTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permissions">
+        <PropertyRef Name="PermissionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdminPermissionsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Permissions" EntityType="Self.Permissions" />
+    <EntitySet Name="PermissionTypes" EntityType="Self.PermissionTypes" />
+    <AssociationSet Name="FK_PermissionTypeID" Association="Self.FK_PermissionTypeID">
+      <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+      <End Role="Permissions" EntitySet="Permissions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

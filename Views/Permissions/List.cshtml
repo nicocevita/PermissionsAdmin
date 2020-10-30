@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PermissionsAdmin.Models.PermissionViewModel>
+
+@{
+    ViewBag.Title = "Permissions list";
+}
+
+    <h2>Employees permission request</h2>
+
+<p>
+    @Html.ActionLink("New request", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeFirstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeLastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermissionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermissionTypes.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeFirstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeLastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermissionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermissionTypes.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

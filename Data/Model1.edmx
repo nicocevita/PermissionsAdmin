@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AdminPermissionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeFirstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeLastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PermissionType" Type="int" Nullable="false" />
+          <Property Name="PermissionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PermissionTypeID">
+          <End Role="PermissionTypes" Type="Self.PermissionTypes" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="PermissionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdminPermissionsModelStoreContainer">
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionTypes" EntityType="Self.PermissionTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PermissionTypeID" Association="Self.FK_PermissionTypeID">
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdminPermissionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeFirstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeLastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PermissionType" Type="Int32" Nullable="false" />
+          <Property Name="PermissionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PermissionTypes" Relationship="Self.FK_PermissionTypeID" FromRole="Permissions" ToRole="PermissionTypes" />
+        </EntityType>
+        <EntityType Name="PermissionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_PermissionTypeID" FromRole="PermissionTypes" ToRole="Permissions" />
+        </EntityType>
+        <Association Name="FK_PermissionTypeID">
+          <End Role="PermissionTypes" Type="Self.PermissionTypes" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="PermissionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdminPermissionsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" />
+          <EntitySet Name="PermissionTypes" EntityType="Self.PermissionTypes" />
+          <AssociationSet Name="FK_PermissionTypeID" Association="Self.FK_PermissionTypeID">
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdminPermissionsModelStoreContainer" CdmEntityContainer="AdminPermissionsEntities">
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="AdminPermissionsModel.Permissions">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeFirstname" ColumnName="EmployeeFirstname" />
+                <ScalarProperty Name="EmployeeLastname" ColumnName="EmployeeLastname" />
+                <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+                <ScalarProperty Name="PermissionDate" ColumnName="PermissionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionTypes">
+            <EntityTypeMapping TypeName="AdminPermissionsModel.PermissionTypes">
+              <MappingFragment StoreEntitySet="PermissionTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
